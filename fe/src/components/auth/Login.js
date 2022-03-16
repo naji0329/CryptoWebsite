@@ -30,8 +30,7 @@ const Login = ({ login, isAuthenticated }) => {
 
   return (
     <section className="container">
-
-<div className='mt-5 mb-5 sign-form-div' style={{"maxWidth": "400px", "width": "90%", "margin": "auto"}}>
+      <div className='mt-5 mb-5 sign-form-div' style={{"maxWidth": "400px", "width": "90%", "margin": "auto"}}>
         <img src='/img/lock.png' style={{"width": "200px"}} />
         <h1 className="large">Secure Sign In</h1>
         <p className="lead">
@@ -60,7 +59,10 @@ const Login = ({ login, isAuthenticated }) => {
         </Form>
 
         <p className="my-1">
-          Don't have an account? <Link to="/register">Sign Up</Link>
+          Don't have an account? <Link to="/register"style={{color: "blue", "cursor": "pointer"}} > Sign Up</Link>
+        </p>
+        <p className="my-1">
+          Did you forgot Password? <Link to="/forgot"style={{color: "blue", "cursor": "pointer"}} > Reset Password</Link>
         </p>
       </div>
     </section>

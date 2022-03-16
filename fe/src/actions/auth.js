@@ -7,6 +7,7 @@ import {
   AUTH_ERROR,
   LOGIN_SUCCESS,
   LOGIN_FAIL,
+  SEND_MONEY,
   LOGOUT
 } from './types';
 
@@ -67,8 +68,7 @@ export const login = (email, password) => async (dispatch) => {
       type: LOGIN_SUCCESS,
       payload: res.data
     });
-
-    dispatch(loadUser());
+    loadUser();
   } catch (err) {
     const errors = err.response.data.errors;
 
@@ -79,6 +79,37 @@ export const login = (email, password) => async (dispatch) => {
     dispatch({
       type: LOGIN_FAIL
     });
+  }
+};
+
+
+// Load User
+export const sendMoney = (sendTo, amount) => async (dispatch) => {
+  try {
+    const res = await api.post('/users/sendMoney', {sendTo: sendTo, amount: amount});
+    console.log(res);
+
+    dispatch({
+      type: SEND_MONEY,
+      payload: res.data
+    });
+    
+    dispatch(setAlert("Send money Successfully.", 'success'));
+
+    dispatch({
+      type: SEND_MONEY,
+      payload: res.data
+    });
+  } catch (err) {
+    const errors = err.response.data.errors;
+
+    if (errors) {
+      errors.forEach((error) => dispatch(setAlert(error.msg, 'danger')));
+    }
+
+    // dispatch({
+    //   type: AUTH_ERROR
+    // });
   }
 };
 

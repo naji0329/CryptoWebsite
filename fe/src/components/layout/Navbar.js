@@ -31,15 +31,15 @@ const Navbar = ({ auth: { isAuthenticated }, logout }) => {
 
   const authLinks = (
     <>
-      {/* <a href="/" className=''>Profile</a> */}
+      <a href="/profile" className=''>Profile</a>
       <a href="#!" onClick={logout} className=''>Log out</a>
     </>
   );
 
   const guestLinks = (
     <>
-      <a href="/login" className=''>Login</a>
-      <a href="/register" className=''>Register</a>
+      <a href="/login" className=''>Sign In</a>
+      <a href="/register" className=''>Sign Up</a>
     </>
   );
 
@@ -112,7 +112,7 @@ const Navbar = ({ auth: { isAuthenticated }, logout }) => {
                 </div>
               </div> 
               {isAuthenticated ? (
-                <Link to="sendMoney">Send Money</Link>
+                <Link to="money/send">Send Money</Link>
               ) : ""}
             </div>
             <div className='d-flex align-items-center mx-5'>

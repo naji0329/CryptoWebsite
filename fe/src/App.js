@@ -6,7 +6,11 @@ import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import Register from './components/auth/Register';
 import Login from './components/auth/Login';
+import Forgot from './components/auth/Forgot';
 import Alert from './components/layout/Alert';
+import SendMoney from './components/money/Send';
+
+
 import Dashboard from './components/dashboard/Dashboard';
 import ProfileForm from './components/profile-forms/ProfileForm';
 import AddExperience from './components/profile-forms/AddExperience';
@@ -49,16 +53,21 @@ function App() {
     <Provider store={store}>
       <Router>
         <Navbar />
-        {/* <Alert /> */}
+        <Alert />
         <Routes>
           <Route path="/" element={<Landing />} />
           <Route path="register" element={<Register />} />
           <Route path="login" element={<Login />} />
-          <Route path="profiles" element={<Profiles />} />
+          <Route path="forgot" element={<Forgot />} />
+          <Route path="money/send" element={<PrivateRoute component={SendMoney} />} />
+          <Route path="profile"  element={<PrivateRoute component={Profile} />} />
+          
+          {/* <Route path="profiles" element={<Profiles />} />
           <Route path="profile/:id" element={<Profile />} />
           <Route path="posts" element={<PrivateRoute component={Posts} />} />
           <Route path="posts/:id" element={<PrivateRoute component={Post} />} />
-          <Route path="/*" element={<NotFound />} />
+          <Route path="/*" element={<NotFound />} /> */}
+
         </Routes>
         <Footer />
       </Router>

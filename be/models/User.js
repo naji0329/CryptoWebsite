@@ -21,6 +21,11 @@ const UserSchema = new mongoose.Schema({
   avatar: {
     type: String
   },
+  money: {
+    type: String,
+    required: true,
+    default: 100
+  },
   date: {
     type: Date,
     default: Date.now

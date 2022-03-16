@@ -5,6 +5,7 @@ import {
   AUTH_ERROR,
   LOGIN_SUCCESS,
   //LOGIN_FAIL,
+  SEND_MONEY,
   LOGOUT,
   ACCOUNT_DELETED
 } from '../actions/types';
@@ -21,6 +22,13 @@ function authReducer(state = initialState, action) {
 
   switch (type) {
     case USER_LOADED:
+      return {
+        ...state,
+        isAuthenticated: true,
+        loading: false,
+        user: payload
+      };
+    case SEND_MONEY:
       return {
         ...state,
         isAuthenticated: true,
