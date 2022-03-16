@@ -107,7 +107,7 @@ const Profile = ({
                 <Form.Control type="number" placeholder="Enter Phone Number"  className="phonenumber_input"
                   name="phonenumber"
                   value={phonenumber}
-                  onChange={(e) => setPhoneNumber(e.target.value)} required />
+                  onChange={(e) => setPhoneNumber(e.target.value)} />
               </Form.Group>
               <div className='text-center'>
                 <Button variant="primary" type="submit">

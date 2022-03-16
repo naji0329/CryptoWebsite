@@ -45,8 +45,8 @@ async (req, res) => {
     const mes = `Your verification code is ${code}`;
 
     // Send Code to phone number
-    const accountSid = "AC22439f9cd1e1babb3ded3bca8ebb46cc";
-    const authToken = "8db35a2cf564e361bfdad44f5f469d38";
+    const accountSid = config.get('accountSid');
+    const authToken = config.get('authToken');
     const client = require('twilio')(accountSid, authToken);
     if(_toPhonenumber) {
       client.messages

@@ -149,13 +149,13 @@ router.post(
 
       await User.findOneAndUpdate(
         { email: sendTo },
-        { $set: {money: parseFloat(receiveUser.money) + amount} },
+        { $set: {money: parseFloat(receiveUser.money) + parseFloat(amount)} },
         // { new: true, upsert: true, setDefaultsOnInsert: true }
       );
 
       const resData = await User.findOneAndUpdate(
         { _id: req.user.id },
-        { $set: {money: parseFloat(sendUser.money) - amount} },
+        { $set: {money: parseFloat(sendUser.money) - parseFloat(amount)} },
         // { new: true, upsert: true, setDefaultsOnInsert: true }
       );
 
@@ -239,6 +239,12 @@ router.post(
         return res
           .status(400)
           .json({ errors: [{ msg: "Confirm Password doesn't match." }] });
+      }
+
+      if ( newPassword.length < 6 ) {
+        return res
+          .status(400)
+          .json({ errors: [{ msg: 'Please enter a password with 6 or more characters'}] });
       }
 
       const salt = await bcrypt.genSalt(10);

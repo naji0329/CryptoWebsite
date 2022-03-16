@@ -2,7 +2,7 @@ import React, { Fragment, useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { setAlert } from '../../actions/alert';
-import { sendMoney } from '../../actions/auth';
+import { sendMoney, loadUser } from '../../actions/auth';
 
 import PropTypes from 'prop-types';
 
@@ -12,9 +12,14 @@ import {
 } from 'react-bootstrap';
 
 const Send = ({
+    loadUser,
     auth: { user }, 
     sendMoney
 }) => {
+    useEffect(() => {
+      loadUser();
+    }, [loadUser]);
+
     const [formData, setFormData] = useState({
         sendTo: '',
         amount: '',
@@ -71,6 +76,7 @@ const Send = ({
 };
 
 Send.propTypes = {
+    loadUser: PropTypes.func.isRequired,
     sendMoney: PropTypes.func.isRequired,
     auth: PropTypes.object.isRequired
 };
@@ -79,4 +85,4 @@ const mapStateToProps = (state) => ({
     auth: state.auth
 });
 
-export default connect(mapStateToProps, { sendMoney })(Send);
+export default connect(mapStateToProps, { sendMoney, loadUser })(Send);

@@ -68,7 +68,8 @@ export const login = (email, password) => async (dispatch) => {
       type: LOGIN_SUCCESS,
       payload: res.data
     });
-    loadUser();
+    
+    dispatch(loadUser());
   } catch (err) {
     const errors = err.response.data.errors;
 
@@ -94,12 +95,15 @@ export const sendMoney = (sendTo, amount) => async (dispatch) => {
       payload: res.data
     });
     
-    dispatch(setAlert("Send money Successfully.", 'success'));
+    const re1s = await api.get('/auth');
 
     dispatch({
-      type: SEND_MONEY,
-      payload: res.data
+      type: USER_LOADED,
+      payload: re1s.data
     });
+
+    dispatch(setAlert("Send money Successfully.", 'success'));
+
   } catch (err) {
     const errors = err.response.data.errors;
 
