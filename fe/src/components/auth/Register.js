@@ -38,7 +38,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
       const exi = await api.post('/users/checkEmailExist', {email: email});
       console.log(exi);
 
-      
+
       setConfirmCode("");
       setModalShow(true);
       // Send Verificaiton Code with Randome Code
@@ -53,8 +53,6 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
         errors.forEach((error) => setAlert(error.msg, 'danger'));
       }
     }
-
-
   };
 
   const confirmVerifyCode = async () => {
@@ -79,7 +77,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
   return (
     <section className="container" id="register">
       <div className='mt-5 mb-5 sign-form-div' style={{"maxWidth": "400px", "width": "90%", "margin": "auto"}}>
-        <img src='/img/lock.png' style={{"width": "200px"}} />
+        <img src='/img/lock.png' style={{"width": "200px"}} alt="" />
         <h1 className="large">Secure Sign Up</h1>
         <p className="lead">
           <i className="fas fa-user" /> Create Your Account

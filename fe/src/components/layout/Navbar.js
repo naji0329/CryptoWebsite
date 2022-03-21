@@ -50,8 +50,45 @@ const Navbar = ({ auth: { isAuthenticated }, logout }) => {
 
       {/* // This is menu part for mobile */}
       <div id="myNav" className="overlay" style={{height: nav_height}}>
-        <div className="overlay-content p-2 text-light">
-          <ul style={{listStyle: "none"}}>
+        <div className='m-navbar-header'>
+          <a href="/" className='n-logo-text'>Peezee</a>
+          <p className='text-light open-m-menu mx-5' onClick={toggle_nav} style={{textAlign: "right"}}>&#x2715;</p>
+        </div>
+        <div className="overlay-content">
+          <div className='m-menu-item'>
+            <p
+              onClick={() => setOpen1(!open1)}
+              aria-controls="example-collapse-text"
+              aria-expanded={open1}
+            >
+              Product &#x2193;
+            </p>
+            <Collapse in={open1}>
+              <ul className='' style={{"listStyle": "none", "fontSize": "16px"}}>
+                <li><Link to="#" onClick={toggle_nav}>Link 1</Link></li>
+                <li><Link to="#" onClick={toggle_nav}>Link 1</Link></li>
+              </ul>
+            </Collapse>
+
+          </div>
+          
+          {isAuthenticated ? (
+            <>
+              <div className='m-menu-item'><Link to="money/send" onClick={toggle_nav}>Send Money</Link></div>
+            
+              <div className='m-menu-item'><Link to="/profile" onClick={toggle_nav}>Profile</Link></div>
+              <div className='m-menu-item'><Link to="#!" onClick={() => {logout(); toggle_nav()}}>Log out</Link></div>
+            </>
+          ) : (
+            <>
+              <div className='m-menu-item'><p><Link to="/login" onClick={toggle_nav}>Sign In</Link></p></div>
+              <div className='m-menu-item'><p><Link to="/register" onClick={toggle_nav}>Sign Up</Link></p></div>
+            </>
+          )}
+
+
+
+          {/* <ul style={{listStyle: "none"}}>
             <li>
               <p
                 onClick={() => setOpen1(!open1)}
@@ -61,38 +98,6 @@ const Navbar = ({ auth: { isAuthenticated }, logout }) => {
                 Product &#x2193;
               </p>
               <Collapse in={open1}>
-                <ul className='px-3' style={{"listStyle": "none", "fontSize": "16px"}}>
-                  <Link to="#">Link 1</Link>
-                  <Link to="#">Link 1</Link>
-                  <Link to="#">Link 1</Link>
-                </ul>
-              </Collapse>
-            </li>
-            <li>
-              <p
-                onClick={() => setOpen2(!open2)}
-                aria-controls="example-collapse-text"
-                aria-expanded={open2}
-              >
-                Currencies &#x2193;
-              </p>
-              <Collapse in={open2}>
-                <ul className='px-3' style={{"listStyle": "none", "fontSize": "16px"}}>
-                  <Link to="#">Link 1</Link>
-                  <Link to="#">Link 1</Link>
-                  <Link to="#">Link 1</Link>
-                </ul>
-              </Collapse>
-            </li>
-            <li>
-              <p
-                onClick={() => setOpen3(!open3)}
-                aria-controls="example-collapse-text"
-                aria-expanded={open3}
-              >
-                Crypto Prices &#x2193;
-              </p>
-              <Collapse in={open3}>
                 <ul className='px-3' style={{"listStyle": "none", "fontSize": "16px"}}>
                   <Link to="#">Link 1</Link>
                   <Link to="#">Link 1</Link>
@@ -110,7 +115,7 @@ const Navbar = ({ auth: { isAuthenticated }, logout }) => {
               {isAuthenticated ? authLinks : guestLinks}
             </li>
 
-          </ul>
+          </ul> */}
         </div>
       </div>
 
