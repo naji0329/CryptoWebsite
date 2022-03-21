@@ -11,7 +11,9 @@ import {
 const Navbar = ({ auth: { isAuthenticated }, logout }) => {
 
   const [nav_height, change_nav_height] = useState("0px");
-  const [open, setOpen] = useState(false);
+  const [open1, setOpen1] = useState(false);
+  const [open2, setOpen2] = useState(false);
+  const [open3, setOpen3] = useState(false);
   const [address, setAddress] = useState();
   const navigate = useNavigate();
 
@@ -31,47 +33,89 @@ const Navbar = ({ auth: { isAuthenticated }, logout }) => {
 
   const authLinks = (
     <>
-      <a href="/profile" className=''>Profile</a>
-      <a href="#!" onClick={logout} className=''>Log out</a>
+      <Link to="/profile" className=''>Profile</Link>
+      <Link to="#!" onClick={logout} className=''>Log out</Link>
     </>
   );
 
   const guestLinks = (
     <>
-      <a href="/login" className=''>Sign In</a>
-      <a href="/register" className=''>Sign Up</a>
+      <Link to="/login" className=''>Sign In</Link>
+      <Link to="/register" className=''>Sign Up</Link>
     </>
   );
 
   return (
     <section id='navbar'>
+
+      {/* // This is menu part for mobile */}
       <div id="myNav" className="overlay" style={{height: nav_height}}>
         <div className="overlay-content p-2 text-light">
           <ul style={{listStyle: "none"}}>
-            <li>Home</li>
-            <li>Roadmap</li>
-            <li>About Us</li>
             <li>
               <p
-                onClick={() => setOpen(!open)}
+                onClick={() => setOpen1(!open1)}
                 aria-controls="example-collapse-text"
-                aria-expanded={open}
+                aria-expanded={open1}
               >
-                Mint &#x2193;
+                Product &#x2193;
               </p>
-              <Collapse in={open}>
-                <ul className='px-5' style={{"listStyle": "none", "fontSize": "16px"}}>
-                  <li>Tier 1</li>
-                  <li>Tier 2</li>
-                  <li>Whitelist</li>
-                  <li>Special Editions</li>
+              <Collapse in={open1}>
+                <ul className='px-3' style={{"listStyle": "none", "fontSize": "16px"}}>
+                  <Link to="#">Link 1</Link>
+                  <Link to="#">Link 1</Link>
+                  <Link to="#">Link 1</Link>
                 </ul>
               </Collapse>
             </li>
+            <li>
+              <p
+                onClick={() => setOpen2(!open2)}
+                aria-controls="example-collapse-text"
+                aria-expanded={open2}
+              >
+                Currencies &#x2193;
+              </p>
+              <Collapse in={open2}>
+                <ul className='px-3' style={{"listStyle": "none", "fontSize": "16px"}}>
+                  <Link to="#">Link 1</Link>
+                  <Link to="#">Link 1</Link>
+                  <Link to="#">Link 1</Link>
+                </ul>
+              </Collapse>
+            </li>
+            <li>
+              <p
+                onClick={() => setOpen3(!open3)}
+                aria-controls="example-collapse-text"
+                aria-expanded={open3}
+              >
+                Crypto Prices &#x2193;
+              </p>
+              <Collapse in={open3}>
+                <ul className='px-3' style={{"listStyle": "none", "fontSize": "16px"}}>
+                  <Link to="#">Link 1</Link>
+                  <Link to="#">Link 1</Link>
+                  <Link to="#">Link 1</Link>
+                </ul>
+              </Collapse>
+            </li>
+            
+            {isAuthenticated ? (
+              <li><Link to="money/send">Send Money</Link></li>
+            ) : ""}
+
+
+            <li className='d-flex justify-content-center text-center' style={{"marginLeft": "-30px"}}>
+              {isAuthenticated ? authLinks : guestLinks}
+            </li>
+
           </ul>
         </div>
       </div>
 
+      
+      {/* // This is menu part for desktop */}
       <div className='n-navbar'>
           <a href="/" className='mx-5 n-logo-text'>Peezee</a>
           <p className='text-light open-m-menu mx-5' onClick={toggle_nav} style={{textAlign: "right"}}>&#9776;</p>
@@ -79,36 +123,27 @@ const Navbar = ({ auth: { isAuthenticated }, logout }) => {
           <div className='d-flex justify-content-between w-100 nav-menu'>
             <div className='d-flex n-menu'>
               <div className="n-dropdown">
-                <button className="n-dropbtn">Products</button>
+                <button className="n-dropbtn">Product</button>
                 <div className="n-dropdown-content">
-                  <a href="#">Link 1</a>
-                  <a href="#">Link 2</a>
-                  <a href="#">Link 1</a>
-                  <a href="#">Link 2</a>
-                  <a href="#">Link 3</a>
-                  <a href="#">Link 1</a>
-                  <a href="#">Link 2</a>
-                  <a href="#">Link 3</a>
-                  <a href="#">Link 3</a>
+                  <Link to="#">Link 1</Link>
+                  <Link to="#">Link 1</Link>
+                  <Link to="#">Link 1</Link>
                 </div>
               </div> 
               <div className="n-dropdown">
                 <button className="n-dropbtn">Currencies</button>
                 <div className="n-dropdown-content">
-                  <a href="#">Link 1</a>
-                  <a href="#">Link 2</a>
-                  <a href="#">Link 3</a>
-                  <a href="#">Link 1</a>
-                  <a href="#">Link 2</a>
-                  <a href="#">Link 3</a>
+                  <Link to="#">Link 1</Link>
+                  <Link to="#">Link 1</Link>
+                  <Link to="#">Link 1</Link>
                 </div>
               </div> 
               <div className="n-dropdown">
                 <button className="n-dropbtn">Crypto Prices</button>
                 <div className="n-dropdown-content">
-                  <a href="#">Link 1</a>
-                  <a href="#">Link 2</a>
-                  <a href="#">Link 3</a>
+                  <Link to="#">Link 1</Link>
+                  <Link to="#">Link 1</Link>
+                  <Link to="#">Link 1</Link>
                 </div>
               </div> 
               {isAuthenticated ? (
