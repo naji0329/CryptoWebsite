@@ -87,35 +87,6 @@ const Navbar = ({ auth: { isAuthenticated }, logout }) => {
           )}
 
 
-
-          {/* <ul style={{listStyle: "none"}}>
-            <li>
-              <p
-                onClick={() => setOpen1(!open1)}
-                aria-controls="example-collapse-text"
-                aria-expanded={open1}
-              >
-                Product &#x2193;
-              </p>
-              <Collapse in={open1}>
-                <ul className='px-3' style={{"listStyle": "none", "fontSize": "16px"}}>
-                  <Link to="#">Link 1</Link>
-                  <Link to="#">Link 1</Link>
-                  <Link to="#">Link 1</Link>
-                </ul>
-              </Collapse>
-            </li>
-            
-            {isAuthenticated ? (
-              <li><Link to="money/send">Send Money</Link></li>
-            ) : ""}
-
-
-            <li className='d-flex justify-content-center text-center' style={{"marginLeft": "-30px"}}>
-              {isAuthenticated ? authLinks : guestLinks}
-            </li>
-
-          </ul> */}
         </div>
       </div>
 
